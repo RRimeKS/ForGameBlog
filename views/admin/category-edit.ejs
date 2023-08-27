@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <style>
+        .col { position: relative; }
+        img { width: 100%; margin-top: 12px; max-height: 100px; object-fit: cover;}
+    </style>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col bg-danger">
+                <form method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="categoryId" value="<%= category.id %>">
+
+                <div class="mb-3">
+                    <label for="categoryName" class="form-label">Kategori adı</label>
+                    <input type="text" class="form-control" id="categoryName" name="categoryName" value="<%= category.categoryName %>">
+                </div>
+
+                <div class="col-auto mb-3">
+                    <button type="submit" class="btn btn-primary mt-3">Güncelle</button>
+                </div>
+                </form>
+
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>resim</th>
+                            <th>başlık</th>
+                            <th>işlemler</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% blogs.forEach(blog => { %>
+                         <tr>
+                            <th><%= blog.id %></th>
+                            <th><img src="/static/img/<%= blog.image %>"></img></th>
+                            <th><%= blog.title %></th>
+                            <th>
+                                <a href="/admin/blog/edit/<%= blog.id %>" class="btn btn-primary">Güncelle</a>
+                                <a href="/admin/blog/delete/<%= blog.id %>" class="btn btn-danger">Sil</a>
+                            </th>
+                         </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../partials/script') %>
+</body>
+</html>

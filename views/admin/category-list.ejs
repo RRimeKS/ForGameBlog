@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Kategori adı</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <h5 style="color:white; background:#DC3545; padding: 3px;" class="text-center">Toplam kategori sayısı: <%= categoryCount %></h5>
+                    <tbody>
+                        <% categories.forEach(category => { %>
+                            <tr>
+                                <td><%= category.id %></td>
+                                
+                                <td><%= category.categoryName %></td>
+                                <td>
+                                    <a href="/admin/category/delete/<%= category.id %>" class="btn btn-danger">Sil</a>
+                                    <a href="/admin/category/edit/<%= category.id %>" class="btn btn-primary">Güncelle</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../partials/script') %>
+</body>
+</html>

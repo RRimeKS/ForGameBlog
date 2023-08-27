@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/static/css/menu-category.css">
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+    
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-md-9">
+                
+                <% if (blogs.length == 0) { %>
+                    <%- include("../partials/no-blog")  %> 
+                <% } %>
+                <% blogs.forEach(blog => { %>                    
+                    <%- include("../partials/blog-card", blog)  %> 
+                <% }) %>
+            </div>
+
+            <div class="col-md-3">
+                <%- include('../partials/category-menu') %>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../partials/script') %>
+</body>
+</html>

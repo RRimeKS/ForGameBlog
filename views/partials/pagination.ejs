@@ -1,0 +1,23 @@
+<% if (totalPages > 0) { %> 
+
+<nav class="mt-4">
+    <ul class="pagination justify-content-center bg-danger p-2">
+
+        <li class="page-item">
+            <a class="page-link" href="?page=<%= currentPage - 1 %>">Geri</a>
+        </li>
+
+        <% for( let i = 0; i < totalPages; i++ ) { %>
+            <li class="page-item">
+                <a class="page-link <%= currentPage == i ? "active bg-danger" : "" %>" href="?page=<%= i %>"><%= i+1 %></a>
+            </li>
+        <% } %>
+
+        <li class="page-item">
+            <a class="page-link" href="?page=<%= currentPage + 1%>">İleri</a>
+        </li>
+
+    </ul>
+</nav>
+
+<% } %>

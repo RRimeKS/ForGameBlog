@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>    
+    <style>
+        .ck-editor__editable[role="textbox"] {
+                min-height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-12 mt-3">
+                <form method="post" enctype="multipart/form-data" action="/admin/blog/create?_csrf=<%= csrfToken %>">
+                    <div class="row mb-3">
+                        <label for="title" class="col-sm-2 col-form-label">Başlık</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="title" name="title">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="subtitle" class="col-sm-2 col-form-label">Altbaşlık</label>
+                        <div class="col-sm-8">
+                            <textarea name="subtitle" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="desc" class="col-sm-2 col-form-label">Açıklama</label>
+                        <div class="col-sm-8">
+                            <textarea id="editor" name="desc" class="form-control" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="image" class="col-sm-2 col-form-label">Resim</label>
+                        <div class="col-sm-8">
+                            <input type="file" class="form-control" id="image" name="image">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-8 offset-sm-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="isHomepage" name="isHomepage">
+                            <label class="form-check-label" for="isHomepage">
+                                Anasayfa
+                            </label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-8 offset-sm-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="isConfirm" name="isConfirm">
+                            <label class="form-check-label" for="isConfirm">
+                                Onay
+                            </label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 border-bottom pb-3">
+                        <div class="col-sm-8 offset-sm-2">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="isShowcase" name="isShowcase">
+                            <label class="form-check-label" for="isShowcase">
+                                Vitrin
+                            </label>
+                          </div>
+                        </div>
+                    </div>
+
+                    <% categories.forEach(category => { %>
+                        <div class="col-sm-8 offset-sm-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="categories_<%= category.id %>" name="categories[]" value="<%= category.id %>">
+                                <label class="form-check-label" for="isShowcase"><%= category.categoryName %></label>
+                            </div>
+                        </div>
+                    <% }) %>
+
+                    <div class="row mb-3 mt-3">
+                        <div class="col-sm-8 offset-sm-2">
+                          <button type="submit" class="btn btn-primary">Kaydet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    <%- include('../partials/script') %>
+</body>
+</html>

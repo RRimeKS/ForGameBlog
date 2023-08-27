@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <style>
+        .col { position: relative; }
+        img { width: 100%; margin-top: 12px; max-height: 100px; object-fit: cover;}
+    </style>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col bg-danger">
+                <form method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="roleId" value="<%= role.id %>">
+
+                <div class="mb-3">
+                    <label for="roleName" class="form-label">Rol adı</label>
+                    <input type="text" class="form-control" id="roleName" name="roleName" value="<%= role.name %>">
+                </div>
+
+                <div class="col-auto mb-3">
+                    <button type="submit" class="btn btn-primary mt-3">Güncelle</button>
+                </div>
+                </form>
+
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad - Soyad</th>
+                            <th>işlemler</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                       <% users.forEach(user => { %>
+                            <tr>
+                               <th><%= user.id %></th>
+                               <th><%= user.fullname %></th>
+                               <th>
+                                   <a href="/admin/user/edit/<%= user.id %>" class="btn btn-primary">Güncelle</a>
+                                   <a href="/admin/user/delete/<%= user.id %>" class="btn btn-danger">Sil</a>
+                               </th>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>  
+    
+    <%- include('../partials/script') %>
+</body>
+</html>

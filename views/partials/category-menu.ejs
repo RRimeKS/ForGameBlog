@@ -1,0 +1,9 @@
+<div class="list-group">
+    <a href="/" class="list-group-item list-group-item-action <%= selectedCategory == categories.id ? "bg-danger active" : "" %>">
+      Tüm kategoriler
+    </a>
+    <% categories.forEach(category => { %>      
+        <a href="/blogs/category/<%= category.id %>" class="list-group-item list-group-item-action <%= selectedCategory == category.id ? "bg-danger active" : "" %>"><%= category.categoryName %></a>
+    <% }) %>    
+    
+</div>

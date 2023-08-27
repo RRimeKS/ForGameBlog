@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> | GameOfBlogs</title>
+    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body {
+            background: #3C3C3C;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">        
+        <div class="header">
+            <%- include('../partials/navbar') %>
+        </div>
+        <div class="slider">
+            <%- include('../partials/slider') %>
+        </div>
+        <div class="row main-area">
+            <div class="col-lg-8 left">
+                <% if (blogs.length == 0) { %>
+                    <%- include("../partials/no-blog")  %> 
+                <% } %>
+                <% blogs.forEach(blog => { %>
+                    <%- include('../partials/blog-card', blog) %>
+                <% }) %>
+            </div>
+            <div class="col-lg-4">
+                <div class="sticky-area sticky-top ">
+                    <%- include('../partials/category-menu') %>
+                </div>
+            </div>
+        </div>
+        <div class="footer-area">
+            
+        </div>
+        <%- include('../partials/pagination') %>
+    </div>
+    
+    <%- include('../partials/script') %>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
